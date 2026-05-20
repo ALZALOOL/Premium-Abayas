@@ -1,18 +1,22 @@
 ```html
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- 1. PRIMARY SEO META TAGS -->
-    <title>AL ZALOOL ABAYA | Premium Luxury Abayas Jeddah</title>
+    <!-- ==========================================
+         SEO & GOOGLE DISCOVERABILITY META TAGS
+         ========================================== -->
+    <title>AL ZALOOL ABAYA | Premium Luxury & Modest Fashion Jeddah</title>
     <meta name="description" content="Discover Alzalool Abaya (الزلول للعبايات) by Sinu Shafeeq. Exquisite premium luxury Saudi-style Abayas hand-crafted in Jeddah. Customize your size and order on WhatsApp.">
     <meta name="keywords" content="Alzalool, AL ZALOOL, Alzalool Abaya, Al Zalool Jeddah, Premium Abayas, Saudi Abaya, Sinu Shafeeq, Kerala to Saudi, luxury abaya, modest fashion">
     <meta name="author" content="Sinu Shafeeq">
     
-    <!-- 2. CANONICAL URL (Crucial for Google search ranking) -->
+    <!-- Canonical Link matching your exact GitHub Pages URL -->
     <link rel="canonical" href="https://alzalool.github.io/Premium-Abayas/" />
 
-    <!-- 3. SOCIAL MEDIA PREVIEW TAGS (Open Graph & Twitter) -->
+    <!-- Open Graph (Social Media Cards) -->
     <meta property="og:title" content="AL ZALOOL ABAYA | Premium Luxury & Modest Fashion">
     <meta property="og:description" content="Bespoke luxury Abayas designed in Jeddah by Sinu Shafeeq. Complete custom fitting and worldwide delivery.">
     <meta property="og:image" content="https://alzalool.github.io/Premium-Abayas/hero_standing.png">
@@ -20,7 +24,7 @@
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
 
-    <!-- 4. GOOGLE RICH RESULTS SCHEMA DATA (Makes Google understand your brand instantly) -->
+    <!-- Schema.org JSON-LD Structured Data (Tells Google precisely who you are) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -43,20 +47,6 @@
       "priceRange": "SAR 150 - SAR 250"
     }
     </script>
-    
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
-
-    <!-- Keep your existing Tailwind Config & Custom CSS style blocks below -->
-</head>
-
-```
-
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -275,12 +265,12 @@
                     <div class="absolute inset-0 bg-gradient-to-t from-gold-600/10 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-700 pointer-events-none z-10"></div>
                     <div class="absolute -inset-1 rounded-2xl bg-gradient-to-tr from-gold-600 to-transparent opacity-30 blur-lg transition duration-700 group-hover:opacity-50"></div>
                     
-                    <div class="relative w-full h-full overflow-hidden rounded-2xl border border-gold-400/20 bg-onyx-muted shadow-2xl cursor-pointer" onclick="openLightbox('hero_standing.png', 'Al Zalool Luxury Traditional Abaya')">
-                        <!-- Img tag looking for actual file -->
+                    <div class="relative w-full h-full overflow-hidden rounded-2xl border border-gold-400/20 bg-onyx-muted shadow-2xl cursor-pointer" onclick="openLightbox('hero_standing', 'Al Zalool Luxury Traditional Abaya')">
+                        <!-- Smart Image Loader starts checking .png, then fallbacks automatically -->
                         <img id="imgStanding" src="hero_standing.png" 
                              class="w-full h-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-105" 
                              alt="Al Zalool Standing Abaya Model"
-                             onerror="handleImageError(this, 'hero_standing.png', 'Outdoor Standing Elegance')">
+                             onerror="handleImageError(this, 'hero_standing', 'Outdoor Standing Elegance')">
                     </div>
                 </div>
             </div>
@@ -295,11 +285,11 @@
             <div class="lg:col-span-5 flex justify-center order-2 lg:order-1">
                 <div class="relative w-full max-w-[380px] aspect-[3/4] group">
                     <div class="absolute -inset-1 rounded-2xl bg-gradient-to-bl from-gold-500 to-transparent opacity-20 blur-md"></div>
-                    <div class="relative w-full h-full overflow-hidden rounded-2xl border border-stone-800 bg-onyx shadow-2xl cursor-pointer" onclick="openLightbox('journey_airport.png', 'The Global Saudi-Modest Transition Journey')">
+                    <div class="relative w-full h-full overflow-hidden rounded-2xl border border-stone-800 bg-onyx shadow-2xl cursor-pointer" onclick="openLightbox('journey_airport', 'The Global Saudi-Modest Transition Journey')">
                         <img src="journey_airport.png" 
                              class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" 
                              alt="Sinu Shafeeq Airport Journey Model"
-                             onerror="handleImageError(this, 'journey_airport.png', 'The Global Airport Transit')">
+                             onerror="handleImageError(this, 'journey_airport', 'The Global Airport Transit')">
                     </div>
                 </div>
             </div>
@@ -346,44 +336,116 @@
             
             <!-- Left Side Details & Abaya Cards -->
             <div class="lg:col-span-7 space-y-4 order-2 lg:order-1">
-                {[
-                    { id: 1, title: 'Royal Black', tag: 'CLASSIC', desc: 'Plain matte Black Abaya finished with unique gold sleeve stich-detailing.', fabric: 'Premium Nada Fabric' },
-                    { id: 2, title: 'Dubai Open Style', tag: 'CHIC', desc: 'Versatile front-open drape with matching tailored premium belt tie.', fabric: 'Breatheable Nidha Fabric' },
-                    { id: 3, title: 'Butterfly Abayas', tag: 'MAJESTIC', desc: 'Extravagant loose visual luxury draping with precise stone work.', fabric: 'Saudi Heavy Crepe' },
-                    { id: 4, title: 'Beige Nude Range', tag: 'MINIMAL', desc: 'Modern nude palette lines for a stunning neutral wardrobe option.', fabric: 'Korean Soft Linen Fabric' },
-                    { id: 5, title: 'Bridal White Abaya', tag: 'CELEBRATION', desc: 'Exquisite white collection decorated with flawless pearl detailing.', fabric: 'Lustrous Silk Satin' }
-                ].map((item) => `
-                    <div class="p-6 bg-onyx-light border border-stone-900 rounded-2xl hover:border-gold-400/40 transition-all duration-500 cursor-pointer group flex flex-col md:flex-row md:items-center justify-between gap-4 reveal" onclick="selectCollectionItem('${item.title}')">
-                        <div class="space-y-1">
-                            <div class="flex items-center gap-3">
-                                <span class="font-mono text-xs text-gold-400 font-bold">0${item.id}</span>
-                                <h3 class="font-serif text-white text-lg group-hover:text-gold-400 transition-colors duration-300 font-semibold">${item.title}</h3>
-                                <span class="text-[9px] bg-gold-500/10 text-gold-400 font-semibold px-2 py-0.5 rounded font-sans tracking-widest uppercase">${item.tag}</span>
-                            </div>
-                            <p class="text-xs text-stone-400 leading-relaxed font-sans font-light max-w-md">${item.desc}</p>
+                <div class="p-6 bg-onyx-light border border-stone-900 rounded-2xl hover:border-gold-400/40 transition-all duration-500 cursor-pointer group flex flex-col md:flex-row md:items-center justify-between gap-4 reveal" onclick="selectCollectionItem('Royal Black')">
+                    <div class="space-y-1">
+                        <div class="flex items-center gap-3">
+                            <span class="font-mono text-xs text-gold-400 font-bold">01</span>
+                            <h3 class="font-serif text-white text-lg group-hover:text-gold-400 transition-colors duration-300 font-semibold">Royal Black</h3>
+                            <span class="text-[9px] bg-gold-500/10 text-gold-400 font-semibold px-2 py-0.5 rounded font-sans tracking-widest uppercase">CLASSIC</span>
                         </div>
-                        <div class="flex items-center gap-3 md:text-right flex-shrink-0">
-                            <div>
-                                <span class="block text-[10px] text-stone-500 uppercase font-sans tracking-widest">Fabric Spec</span>
-                                <span class="text-xs text-gold-300 font-sans">${item.fabric}</span>
-                            </div>
-                            <div class="w-8 h-8 rounded-full bg-onyx border border-stone-800 flex items-center justify-center group-hover:bg-gold-400 group-hover:text-black transition-all duration-500">
-                                <span class="text-xs">→</span>
-                            </div>
+                        <p class="text-xs text-stone-400 leading-relaxed font-sans font-light max-w-md">Plain matte Black Abaya finished with unique gold sleeve stich-detailing.</p>
+                    </div>
+                    <div class="flex items-center gap-3 md:text-right flex-shrink-0">
+                        <div>
+                            <span class="block text-[10px] text-stone-500 uppercase font-sans tracking-widest">Fabric Spec</span>
+                            <span class="text-xs text-gold-300 font-sans">Premium Nada Fabric</span>
+                        </div>
+                        <div class="w-8 h-8 rounded-full bg-onyx border border-stone-800 flex items-center justify-center group-hover:bg-gold-400 group-hover:text-black transition-all duration-500">
+                            <span class="text-xs">→</span>
                         </div>
                     </div>
-                `).join('')}
+                </div>
+
+                <div class="p-6 bg-onyx-light border border-stone-900 rounded-2xl hover:border-gold-400/40 transition-all duration-500 cursor-pointer group flex flex-col md:flex-row md:items-center justify-between gap-4 reveal" onclick="selectCollectionItem('Dubai Open Style')">
+                    <div class="space-y-1">
+                        <div class="flex items-center gap-3">
+                            <span class="font-mono text-xs text-gold-400 font-bold">02</span>
+                            <h3 class="font-serif text-white text-lg group-hover:text-gold-400 transition-colors duration-300 font-semibold">Dubai Open Style</h3>
+                            <span class="text-[9px] bg-gold-500/10 text-gold-400 font-semibold px-2 py-0.5 rounded font-sans tracking-widest uppercase">CHIC</span>
+                        </div>
+                        <p class="text-xs text-stone-400 leading-relaxed font-sans font-light max-w-md">Versatile front-open drape with matching tailored premium belt tie.</p>
+                    </div>
+                    <div class="flex items-center gap-3 md:text-right flex-shrink-0">
+                        <div>
+                            <span class="block text-[10px] text-stone-500 uppercase font-sans tracking-widest">Fabric Spec</span>
+                            <span class="text-xs text-gold-300 font-sans">Breatheable Nidha Fabric</span>
+                        </div>
+                        <div class="w-8 h-8 rounded-full bg-onyx border border-stone-800 flex items-center justify-center group-hover:bg-gold-400 group-hover:text-black transition-all duration-500">
+                            <span class="text-xs">→</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-6 bg-onyx-light border border-stone-900 rounded-2xl hover:border-gold-400/40 transition-all duration-500 cursor-pointer group flex flex-col md:flex-row md:items-center justify-between gap-4 reveal" onclick="selectCollectionItem('Butterfly Abayas')">
+                    <div class="space-y-1">
+                        <div class="flex items-center gap-3">
+                            <span class="font-mono text-xs text-gold-400 font-bold">03</span>
+                            <h3 class="font-serif text-white text-lg group-hover:text-gold-400 transition-colors duration-300 font-semibold">Butterfly Abayas</h3>
+                            <span class="text-[9px] bg-gold-500/10 text-gold-400 font-semibold px-2 py-0.5 rounded font-sans tracking-widest uppercase">MAJESTIC</span>
+                        </div>
+                        <p class="text-xs text-stone-400 leading-relaxed font-sans font-light max-w-md">Extravagant loose visual luxury draping with precise stone work.</p>
+                    </div>
+                    <div class="flex items-center gap-3 md:text-right flex-shrink-0">
+                        <div>
+                            <span class="block text-[10px] text-stone-500 uppercase font-sans tracking-widest">Fabric Spec</span>
+                            <span class="text-xs text-gold-300 font-sans">Saudi Heavy Crepe</span>
+                        </div>
+                        <div class="w-8 h-8 rounded-full bg-onyx border border-stone-800 flex items-center justify-center group-hover:bg-gold-400 group-hover:text-black transition-all duration-500">
+                            <span class="text-xs">→</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-6 bg-onyx-light border border-stone-900 rounded-2xl hover:border-gold-400/40 transition-all duration-500 cursor-pointer group flex flex-col md:flex-row md:items-center justify-between gap-4 reveal" onclick="selectCollectionItem('Beige Nude Range')">
+                    <div class="space-y-1">
+                        <div class="flex items-center gap-3">
+                            <span class="font-mono text-xs text-gold-400 font-bold">04</span>
+                            <h3 class="font-serif text-white text-lg group-hover:text-gold-400 transition-colors duration-300 font-semibold">Beige Nude Range</h3>
+                            <span class="text-[9px] bg-gold-500/10 text-gold-400 font-semibold px-2 py-0.5 rounded font-sans tracking-widest uppercase">MINIMAL</span>
+                        </div>
+                        <p class="text-xs text-stone-400 leading-relaxed font-sans font-light max-w-md">Modern nude palette lines for a stunning neutral wardrobe option.</p>
+                    </div>
+                    <div class="flex items-center gap-3 md:text-right flex-shrink-0">
+                        <div>
+                            <span class="block text-[10px] text-stone-500 uppercase font-sans tracking-widest">Fabric Spec</span>
+                            <span class="text-xs text-gold-300 font-sans">Korean Soft Linen Fabric</span>
+                        </div>
+                        <div class="w-8 h-8 rounded-full bg-onyx border border-stone-800 flex items-center justify-center group-hover:bg-gold-400 group-hover:text-black transition-all duration-500">
+                            <span class="text-xs">→</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-6 bg-onyx-light border border-stone-900 rounded-2xl hover:border-gold-400/40 transition-all duration-500 cursor-pointer group flex flex-col md:flex-row md:items-center justify-between gap-4 reveal" onclick="selectCollectionItem('Bridal White Abaya')">
+                    <div class="space-y-1">
+                        <div class="flex items-center gap-3">
+                            <span class="font-mono text-xs text-gold-400 font-bold">05</span>
+                            <h3 class="font-serif text-white text-lg group-hover:text-gold-400 transition-colors duration-300 font-semibold">Bridal White Abaya</h3>
+                            <span class="text-[9px] bg-gold-500/10 text-gold-400 font-semibold px-2 py-0.5 rounded font-sans tracking-widest uppercase">CELEBRATION</span>
+                        </div>
+                        <p class="text-xs text-stone-400 leading-relaxed font-sans font-light max-w-md">Exquisite white collection decorated with flawless pearl detailing.</p>
+                    </div>
+                    <div class="flex items-center gap-3 md:text-right flex-shrink-0">
+                        <div>
+                            <span class="block text-[10px] text-stone-500 uppercase font-sans tracking-widest">Fabric Spec</span>
+                            <span class="text-xs text-gold-300 font-sans">Lustrous Silk Satin</span>
+                        </div>
+                        <div class="w-8 h-8 rounded-full bg-onyx border border-stone-800 flex items-center justify-center group-hover:bg-gold-400 group-hover:text-black transition-all duration-500">
+                            <span class="text-xs">→</span>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Right Garden Model Showcase (Sitting Outdoor) -->
             <div class="lg:col-span-5 flex flex-col items-center order-1 lg:order-2">
                 <div class="relative w-full max-w-[390px] aspect-[3/4] group mb-6">
                     <div class="absolute -inset-1 rounded-2xl bg-gradient-to-tr from-gold-600 to-transparent opacity-25 blur-lg"></div>
-                    <div class="relative w-full h-full overflow-hidden rounded-2xl border border-stone-800 bg-onyx shadow-2xl cursor-pointer" onclick="openLightbox('boutique_sitting.png', 'Al Zalool Sitting Garden Abaya Model')">
+                    <div class="relative w-full h-full overflow-hidden rounded-2xl border border-stone-800 bg-onyx shadow-2xl cursor-pointer" onclick="openLightbox('boutique_sitting', 'Al Zalool Sitting Garden Abaya Model')">
                         <img src="boutique_sitting.png" 
                              class="w-full h-full object-cover transition-transform duration-[1.2s] group-hover:scale-105" 
                              alt="Al Zalool Sitting Garden Model"
-                             onerror="handleImageError(this, 'boutique_sitting.png', 'Garden Seating Elegance')">
+                             onerror="handleImageError(this, 'boutique_sitting', 'Garden Seating Elegance')">
                     </div>
                 </div>
                 <p class="text-center text-[11px] text-stone-500 italic tracking-wider font-sans font-light">
@@ -414,12 +476,26 @@
                     <div>
                         <label class="block text-[10px] uppercase text-stone-500 tracking-[0.2em] font-sans font-semibold mb-3">1. Select Silhouette Style</label>
                         <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                            {['Royal Black', 'Dubai Open', 'Butterfly Abaya', 'Beige Nude', 'Bridal White'].map((style, idx) => `
-                                <button type="button" onclick="updateStyle('${style}')" id="btnStyle_${style}" class="py-3 px-4 rounded-xl border border-stone-800 bg-onyx text-xs text-left transition-all font-sans duration-300 hover:border-gold-400 text-stone-300 style-btn flex items-center justify-between">
-                                    <span>${style}</span>
-                                    <span class="text-[9px] text-gold-400 font-semibold">0${idx+1}</span>
-                                </button>
-                            `).join('')}
+                            <button type="button" onclick="updateStyle('Royal Black')" id="btnStyle_Royal Black" class="py-3 px-4 rounded-xl border border-stone-800 bg-onyx text-xs text-left transition-all font-sans duration-300 hover:border-gold-400 text-stone-300 style-btn flex items-center justify-between">
+                                <span>Royal Black</span>
+                                <span class="text-[9px] text-gold-400 font-semibold">01</span>
+                            </button>
+                            <button type="button" onclick="updateStyle('Dubai Open Style')" id="btnStyle_Dubai Open Style" class="py-3 px-4 rounded-xl border border-stone-800 bg-onyx text-xs text-left transition-all font-sans duration-300 hover:border-gold-400 text-stone-300 style-btn flex items-center justify-between">
+                                <span>Dubai Open</span>
+                                <span class="text-[9px] text-gold-400 font-semibold">02</span>
+                            </button>
+                            <button type="button" onclick="updateStyle('Butterfly Abayas')" id="btnStyle_Butterfly Abayas" class="py-3 px-4 rounded-xl border border-stone-800 bg-onyx text-xs text-left transition-all font-sans duration-300 hover:border-gold-400 text-stone-300 style-btn flex items-center justify-between">
+                                <span>Butterfly Abaya</span>
+                                <span class="text-[9px] text-gold-400 font-semibold">03</span>
+                            </button>
+                            <button type="button" onclick="updateStyle('Beige Nude Range')" id="btnStyle_Beige Nude Range" class="py-3 px-4 rounded-xl border border-stone-800 bg-onyx text-xs text-left transition-all font-sans duration-300 hover:border-gold-400 text-stone-300 style-btn flex items-center justify-between">
+                                <span>Beige Nude</span>
+                                <span class="text-[9px] text-gold-400 font-semibold">04</span>
+                            </button>
+                            <button type="button" onclick="updateStyle('Bridal White Abaya')" id="btnStyle_Bridal White Abaya" class="py-3 px-4 rounded-xl border border-stone-800 bg-onyx text-xs text-left transition-all font-sans duration-300 hover:border-gold-400 text-stone-300 style-btn flex items-center justify-between">
+                                <span>Bridal White</span>
+                                <span class="text-[9px] text-gold-400 font-semibold">05</span>
+                            </button>
                         </div>
                     </div>
 
@@ -427,16 +503,18 @@
                     <div>
                         <label class="block text-[10px] uppercase text-stone-500 tracking-[0.2em] font-sans font-semibold mb-3">2. Select Fabric Option</label>
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                            {[
-                                { name: 'Nada Fabric', note: 'Rich, smooth matte' },
-                                { name: 'Nidha fabric', note: 'Glossy flow, highly breathable' },
-                                { name: 'Saudi Heavy Crepe', note: 'Textured weight' }
-                            ].map((fabric) => `
-                                <button type="button" onclick="updateFabric('${fabric.name}')" id="btnFabric_${fabric.name}" class="p-3 rounded-xl border border-stone-800 bg-onyx text-left transition-all duration-300 hover:border-gold-400 fabric-btn">
-                                    <span class="block text-xs text-stone-200 font-semibold font-sans">${fabric.name}</span>
-                                    <span class="block text-[9px] text-stone-500 mt-0.5">${fabric.note}</span>
-                                </button>
-                            `).join('')}
+                            <button type="button" onclick="updateFabric('Nada Fabric')" id="btnFabric_Nada Fabric" class="p-3 rounded-xl border border-stone-800 bg-onyx text-left transition-all duration-300 hover:border-gold-400 fabric-btn">
+                                <span class="block text-xs text-stone-200 font-semibold font-sans">Nada Fabric</span>
+                                <span class="block text-[9px] text-stone-500 mt-0.5">Rich, smooth matte look</span>
+                            </button>
+                            <button type="button" onclick="updateFabric('Nidha fabric')" id="btnFabric_Nidha fabric" class="p-3 rounded-xl border border-stone-800 bg-onyx text-left transition-all duration-300 hover:border-gold-400 fabric-btn">
+                                <span class="block text-xs text-stone-200 font-semibold font-sans">Nidha fabric</span>
+                                <span class="block text-[9px] text-stone-500 mt-0.5">Glossy flow, highly breathable</span>
+                            </button>
+                            <button type="button" onclick="updateFabric('Saudi Heavy Crepe')" id="btnFabric_Saudi Heavy Crepe" class="p-3 rounded-xl border border-stone-800 bg-onyx text-left transition-all duration-300 hover:border-gold-400 fabric-btn">
+                                <span class="block text-xs text-stone-200 font-semibold font-sans">Saudi Heavy Crepe</span>
+                                <span class="block text-[9px] text-stone-500 mt-0.5">Durable, structured weight</span>
+                            </button>
                         </div>
                     </div>
 
@@ -444,11 +522,11 @@
                     <div>
                         <label class="block text-[10px] uppercase text-stone-500 tracking-[0.2em] font-sans font-semibold mb-3">3. Standard Size (Inches)</label>
                         <div class="flex flex-wrap gap-2">
-                            {['52 (Small)', '54 (Medium)', '56 (Large)', '58 (X-Large)', '60 (XX-Large)'].map((size) => `
-                                <button type="button" onclick="updateSize('${size}')" id="btnSize_${size}" class="py-2.5 px-5 rounded-lg border border-stone-800 bg-onyx text-xs text-center transition-all duration-300 hover:border-gold-400 text-stone-300 size-btn font-sans">
-                                    ${size}
-                                </button>
-                            `).join('')}
+                            <button type="button" onclick="updateSize('52 (Small)')" id="btnSize_52 (Small)" class="py-2.5 px-5 rounded-lg border border-stone-800 bg-onyx text-xs text-center transition-all duration-300 hover:border-gold-400 text-stone-300 size-btn font-sans">52 (Small)</button>
+                            <button type="button" onclick="updateSize('54 (Medium)')" id="btnSize_54 (Medium)" class="py-2.5 px-5 rounded-lg border border-stone-800 bg-onyx text-xs text-center transition-all duration-300 hover:border-gold-400 text-stone-300 size-btn font-sans">54 (Medium)</button>
+                            <button type="button" onclick="updateSize('56 (Large)')" id="btnSize_56 (Large)" class="py-2.5 px-5 rounded-lg border border-stone-800 bg-onyx text-xs text-center transition-all duration-300 hover:border-gold-400 text-stone-300 size-btn font-sans">56 (Large)</button>
+                            <button type="button" onclick="updateSize('58 (X-Large)')" id="btnSize_58 (X-Large)" class="py-2.5 px-5 rounded-lg border border-stone-800 bg-onyx text-xs text-center transition-all duration-300 hover:border-gold-400 text-stone-300 size-btn font-sans">58 (X-Large)</button>
+                            <button type="button" onclick="updateSize('60 (XX-Large)')" id="btnSize_60 (XX-Large)" class="py-2.5 px-5 rounded-lg border border-stone-800 bg-onyx text-xs text-center transition-all duration-300 hover:border-gold-400 text-stone-300 size-btn font-sans">60 (XX-Large)</button>
                         </div>
                     </div>
                 </div>
@@ -712,43 +790,69 @@
 
         revealElements.forEach(el => observer.observe(el));
 
-        // Setup image placeholders gracefully if files don't exist in local GitHub directory
-        function handleImageError(element, filename, visualLabel) {
-            console.log(`Missing file fallback setup: ${filename}`);
-            element.onerror = null; // Prevent infinite loops
-            
-            // Generate a stunning styled abstract SVG card as local fallback
-            const parent = element.parentElement;
-            parent.innerHTML = `
-                <div class="w-full h-full bg-gradient-to-br from-onyx-muted via-[#1C1710] to-[#261E12] flex flex-col justify-between p-8 relative shimmer">
-                    <div class="flex justify-between items-start">
-                        <span class="font-serif text-gold-400 text-sm tracking-widest uppercase">AL ZALOOL</span>
-                        <span class="text-[10px] bg-gold-400/10 text-gold-400 px-2 py-0.5 rounded font-mono font-bold">PORTRAIT FRAME</span>
-                    </div>
-                    
-                    <div class="space-y-2 text-center my-auto relative z-10">
-                        <div class="text-4xl">🖤</div>
-                        <h4 class="font-serif text-stone-200 text-lg tracking-wide font-semibold">${visualLabel}</h4>
-                        <p class="text-[10px] text-stone-500 tracking-wider">File location: "${filename}"</p>
-                    </div>
+        // ==========================================
+        // SMART IMAGE LOADER & CASE-FALLBACK ENGINE
+        // ==========================================
+        const extensions = ['.jpg', '.jpeg', '.PNG', '.JPG', '.JPEG', '.webp', '.WEBP'];
 
-                    <div class="border-t border-stone-800 pt-4 flex justify-between items-center text-[9px] text-stone-600">
-                        <span>JEDDAH STUDIO</span>
-                        <span>LUXURY COLLECTION</span>
+        function handleImageError(imgElement, baseNameWithoutExt, visualLabel) {
+            console.log(`Initial attempt failed for: ${baseNameWithoutExt}`);
+            
+            // Read or initialize attempt counter
+            let currentAttempt = parseInt(imgElement.dataset.attempt || "0");
+            
+            if (currentAttempt < extensions.length) {
+                const nextExt = extensions[currentAttempt];
+                imgElement.dataset.attempt = currentAttempt + 1;
+                imgElement.src = baseNameWithoutExt + nextExt;
+                console.log(`Trying alternative extension: ${baseNameWithoutExt}${nextExt}`);
+            } else {
+                // If all attempts failed, render a premium gold styled abstract placeholder
+                console.log(`All alternate formats failed for: ${baseNameWithoutExt}`);
+                imgElement.onerror = null; // stop error loop recursion
+                const parent = imgElement.parentElement;
+                parent.innerHTML = `
+                    <div class="w-full h-full bg-gradient-to-br from-onyx-muted via-[#1C1710] to-[#261E12] flex flex-col justify-between p-8 relative shimmer">
+                        <div class="flex justify-between items-start">
+                            <span class="font-serif text-gold-400 text-sm tracking-widest uppercase">AL ZALOOL</span>
+                            <span class="text-[10px] bg-gold-400/10 text-gold-400 px-2 py-0.5 rounded font-mono font-bold">PORTRAIT FRAME</span>
+                        </div>
+                        
+                        <div class="space-y-2 text-center my-auto relative z-10">
+                            <div class="text-4xl">🖤</div>
+                            <h4 class="font-serif text-stone-200 text-lg tracking-wide font-semibold">${visualLabel}</h4>
+                            <p class="text-[10px] text-stone-500 tracking-wider">File expected: "${baseNameWithoutExt}.png" (or .jpg, .jpeg)</p>
+                        </div>
+
+                        <div class="border-t border-stone-800 pt-4 flex justify-between items-center text-[9px] text-stone-600">
+                            <span>JEDDAH STUDIO</span>
+                            <span>LUXURY COLLECTION</span>
+                        </div>
                     </div>
-                </div>
-            `;
+                `;
+            }
         }
 
         // Lightbox controls
-        function openLightbox(imgSrc, caption) {
+        function openLightbox(baseNameWithoutExt, caption) {
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightboxImg');
             
-            // Attempt to load. If it fails, open fallback messaging
-            lightboxImg.src = imgSrc;
+            // Set source dynamically using the currently rendered source from the page
+            let activeImgSrc = "";
+            if (baseNameWithoutExt === 'hero_standing') {
+                activeImgSrc = document.getElementById('imgStanding') ? document.getElementById('imgStanding').src : "hero_standing.png";
+            } else if (baseNameWithoutExt === 'journey_airport') {
+                const selector = document.querySelector(`img[alt*="Airport"]`);
+                activeImgSrc = selector ? selector.src : "journey_airport.png";
+            } else if (baseNameWithoutExt === 'boutique_sitting') {
+                const selector = document.querySelector(`img[alt*="Sitting"]`);
+                activeImgSrc = selector ? selector.src : "boutique_sitting.png";
+            }
+
+            lightboxImg.src = activeImgSrc;
             lightboxImg.onerror = function() {
-                showToast("Double-click to open. Upload local file '"+imgSrc+"' to make it interactive!");
+                showToast("Image format error. Please upload " + baseNameWithoutExt + " in standard JPG/PNG formats.");
             };
 
             lightbox.classList.remove('pointer-events-none', 'opacity-0');
@@ -821,7 +925,7 @@
                              `• *Style:* ${orderData.style}\n` +
                              `• *Fabric:* ${orderData.fabric}\n` +
                              `• *Standard Size:* ${orderData.size}\n\n` +
-                             `Hello, Sinu! Please let me know standard fulfillment rates and booking times in Jeddah.`;
+                             `Hello Sinu! Please let me know standard fulfillment rates and booking times in Jeddah.`;
 
             const waUrl = `https://wa.me/966500000000?text=${encodeURIComponent(baseText)}`;
             window.open(waUrl, '_blank');
@@ -857,8 +961,8 @@
             showToast("Luxury box cover lifted successfully!");
         }
 
+        // Scent mist animation engine
         function sprayOud() {
-            // Visual mist particles
             const scentContainer = document.getElementById('scentContainer');
             scentContainer.innerHTML = '';
             
@@ -871,7 +975,6 @@
                 particle.style.transition = 'all 1.5s ease-out';
                 scentContainer.appendChild(particle);
 
-                // mist cloud visual growth
                 setTimeout(() => {
                     particle.style.transform = 'scale(3.5)';
                     particle.style.opacity = '0';
