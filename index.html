@@ -1,0 +1,863 @@
+```html
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AL ZALOOL ABAYA | Premium Luxury & Modest Fashion</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Luxury Serif & Modern Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Custom Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['Cinzel', 'serif'],
+                        sans: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        gold: {
+                            50: '#FAF7F2',
+                            100: '#F3ECDE',
+                            200: '#E2D2B9',
+                            300: '#D2B994',
+                            400: '#C19F6E',
+                            500: '#B08549',
+                            600: '#946D3A',
+                            700: '#77562D',
+                            800: '#5B4122',
+                            950: '#1A1208',
+                        },
+                        onyx: {
+                            DEFAULT: '#0A0A0A',
+                            light: '#121212',
+                            muted: '#1C1C1C',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Global Custom Styles -->
+    <style>
+        body {
+            background-color: #0A0A0A;
+            color: #E5E1DA;
+            overflow-x: hidden;
+        }
+
+        /* Custom luxury scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0A0A0A;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #C19F6E;
+            border-radius: 3px;
+        }
+
+        /* Scroll reveal effect classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px) scale(0.96);
+            transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-left.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-right.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Shimmer effect for placeholders */
+        @keyframes shimmer {
+            100% { transform: translateX(100%); }
+        }
+        .shimmer::after {
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            transform: translateX(-100%);
+            background-image: linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.05) 20%,
+                rgba(255, 255, 255, 0.1) 60%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            animation: shimmer 2.5s infinite;
+            content: '';
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- SCROLL PROGRESS INDICATOR -->
+    <div id="scrollProgress" class="fixed top-0 left-0 h-[2px] bg-gradient-to-r from-gold-600 via-gold-400 to-gold-200 z-50 transition-all duration-100" style="width: 0%"></div>
+
+    <!-- CUSTOM TOAST NOTIFICATION BAR -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 bg-onyx-muted border border-gold-400/30 px-6 py-4 rounded-xl shadow-2xl translate-y-20 opacity-0 transition-all duration-500 flex items-center gap-3">
+        <span class="text-gold-400 text-lg">✨</span>
+        <p id="toastMessage" class="text-xs font-sans tracking-wide text-stone-200"></p>
+    </div>
+
+    <!-- MAIN LIGHTBOX SCREEN -->
+    <div id="lightbox" class="fixed inset-0 z-50 bg-black/95 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-500 flex items-center justify-center p-4" onclick="closeLightbox()">
+        <button class="absolute top-6 right-6 text-white hover:text-gold-400 transition text-2xl font-sans">&times;</button>
+        <img id="lightboxImg" class="max-h-[85vh] max-w-[90vw] object-contain rounded-lg border border-gold-400/20 shadow-2xl" src="" alt="">
+    </div>
+
+    <!-- LUXURY NAVIGATION HEADER -->
+    <header class="fixed top-0 inset-x-0 z-40 bg-onyx/85 backdrop-blur-md border-b border-gold-900/20 py-4 px-6 md:px-12 transition-all duration-350" id="mainHeader">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-full border border-gold-400/30 flex items-center justify-center bg-onyx-muted group-hover:border-gold-400 transition-all duration-500">
+                    <span class="font-serif text-gold-400 text-lg font-semibold tracking-wider">AZ</span>
+                </div>
+                <div>
+                    <h1 class="font-serif text-white tracking-[0.2em] uppercase text-sm md:text-base font-semibold">AL ZALOOL</h1>
+                    <p class="text-[9px] text-stone-500 tracking-[0.25em] uppercase font-sans">Luxury Abayas</p>
+                </div>
+            </a>
+
+            <!-- Navigation Links -->
+            <nav class="hidden md:flex items-center gap-8 text-xs tracking-[0.2em] uppercase text-stone-400 font-sans font-medium">
+                <a href="#hero" class="hover:text-gold-400 transition-colors">Home</a>
+                <a href="#journey" class="hover:text-gold-400 transition-colors">Our Story</a>
+                <a href="#collection" class="hover:text-gold-400 transition-colors">Collections</a>
+                <a href="#customizer" class="hover:text-gold-400 transition-colors">Customizer</a>
+                <a href="#unboxing" class="hover:text-gold-400 transition-colors">Experience</a>
+            </nav>
+
+            <!-- WhatsApp Direct CTA -->
+            <a href="https://wa.me/966500000000?text=Hello%20Al%20Zalool%20Boutique,%20I%20am%20interested%20in%20your%20luxury%20Abayas." 
+               target="_blank"
+               class="bg-gold-500/10 hover:bg-gold-500 hover:text-black border border-gold-400/40 px-5 py-2.5 rounded-full text-[10px] tracking-[0.2em] uppercase text-gold-400 font-semibold transition-all duration-500 shadow-[0_4px_20px_rgba(197,160,89,0.05)] hover:shadow-[0_4px_25px_rgba(197,160,89,0.25)]">
+                Inquire Directly
+            </a>
+        </div>
+    </header>
+
+    <!-- SECTION 1: HERO VIEWPORT -->
+    <section id="hero" class="relative min-h-screen flex flex-col justify-center pt-24 pb-12 px-6 md:px-12 overflow-hidden">
+        <!-- Ambient Background Glows -->
+        <div class="absolute top-1/4 right-0 w-[45vw] h-[45vw] rounded-full bg-gold-950/10 blur-[120px] pointer-events-none"></div>
+        <div class="absolute bottom-12 left-0 w-[35vw] h-[35vw] rounded-full bg-gold-950/5 blur-[120px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+            <!-- Hero Text Details -->
+            <div class="lg:col-span-6 space-y-6 md:space-y-8 text-center lg:text-left">
+                <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-onyx-muted border border-gold-900/30">
+                    <span class="w-1.5 h-1.5 rounded-full bg-gold-400 animate-pulse"></span>
+                    <span class="text-[9px] tracking-[0.3em] text-gold-400 uppercase font-sans font-semibold">Jeddah, Saudi Arabia</span>
+                </div>
+                
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif text-white tracking-wide leading-[1.15]">
+                    Where Heritage <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold-300 via-gold-400 to-gold-200 italic font-light">Meets Modest</span> <br>
+                    Sophistication
+                </h1>
+
+                <p class="text-xs md:text-sm text-stone-400 font-sans tracking-wide leading-relaxed max-w-xl mx-auto lg:mx-0 font-light">
+                    Sinu Shafeeq invites you to experience bespoke drapery designed in Jeddah. Bridging structural traditional elegance with contemporary luxury materials.
+                </p>
+
+                <!-- Action Button Matrix -->
+                <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 pt-4">
+                    <a href="#customizer" class="bg-gradient-to-r from-gold-600 to-gold-400 text-black font-semibold text-xs tracking-[0.2em] uppercase px-8 py-4 rounded-xl shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(197,160,89,0.3)]">
+                        Bespoke Fitting Setup
+                    </a>
+                    <a href="#collection" class="border border-stone-800 hover:border-gold-400 hover:text-white text-stone-400 text-xs tracking-[0.2em] uppercase px-8 py-4 rounded-xl transition-all duration-300 bg-onyx-light/40">
+                        View Signature Range
+                    </a>
+                </div>
+
+                <!-- Strategic Statistics -->
+                <div class="grid grid-cols-3 gap-6 pt-8 border-t border-stone-900 max-w-md mx-auto lg:mx-0">
+                    <div>
+                        <span class="block text-xl font-serif text-gold-400">100%</span>
+                        <span class="text-[9px] text-stone-500 uppercase tracking-widest">Nada Fabric</span>
+                    </div>
+                    <div>
+                        <span class="block text-xl font-serif text-gold-400">10-20</span>
+                        <span class="text-[9px] text-stone-500 uppercase tracking-widest">Limited Runs</span>
+                    </div>
+                    <div>
+                        <span class="block text-xl font-serif text-gold-400">Jeddah</span>
+                        <span class="text-[9px] text-stone-500 uppercase tracking-widest">Local Sourcing</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hero Image Showcase Frame (Standing Outdoor) -->
+            <div class="lg:col-span-6 flex justify-center lg:justify-end">
+                <div class="relative w-full max-w-[430px] aspect-[3/4] group">
+                    <div class="absolute inset-0 bg-gradient-to-t from-gold-600/10 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-700 pointer-events-none z-10"></div>
+                    <div class="absolute -inset-1 rounded-2xl bg-gradient-to-tr from-gold-600 to-transparent opacity-30 blur-lg transition duration-700 group-hover:opacity-50"></div>
+                    
+                    <div class="relative w-full h-full overflow-hidden rounded-2xl border border-gold-400/20 bg-onyx-muted shadow-2xl cursor-pointer" onclick="openLightbox('hero_standing.png', 'Al Zalool Luxury Traditional Abaya')">
+                        <!-- Img tag looking for actual file -->
+                        <img id="imgStanding" src="hero_standing.png" 
+                             class="w-full h-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-105" 
+                             alt="Al Zalool Standing Abaya Model"
+                             onerror="handleImageError(this, 'hero_standing.png', 'Outdoor Standing Elegance')">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: BRAND STATEMENT (KERALA TO SAUDI DREAM) -->
+    <section id="journey" class="py-24 px-6 md:px-12 bg-onyx-light relative border-y border-stone-950">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            
+            <!-- Strategic Left Side Showcase (Airport Transit Photo) -->
+            <div class="lg:col-span-5 flex justify-center order-2 lg:order-1">
+                <div class="relative w-full max-w-[380px] aspect-[3/4] group">
+                    <div class="absolute -inset-1 rounded-2xl bg-gradient-to-bl from-gold-500 to-transparent opacity-20 blur-md"></div>
+                    <div class="relative w-full h-full overflow-hidden rounded-2xl border border-stone-800 bg-onyx shadow-2xl cursor-pointer" onclick="openLightbox('journey_airport.png', 'The Global Saudi-Modest Transition Journey')">
+                        <img src="journey_airport.png" 
+                             class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" 
+                             alt="Sinu Shafeeq Airport Journey Model"
+                             onerror="handleImageError(this, 'journey_airport.png', 'The Global Airport Transit')">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Hand Story Text Content -->
+            <div class="lg:col-span-7 space-y-6 md:space-y-8 order-1 lg:order-2 reveal">
+                <span class="text-xs uppercase tracking-[0.3em] text-gold-400 font-semibold block">The Foundation Dream</span>
+                <h2 class="text-3xl md:text-4xl font-serif text-white tracking-wide leading-snug">
+                    Bridging Kerala Heritage <br>With <span class="italic text-gold-300 font-light">Saudi Arabian High-Fashion</span>
+                </h2>
+                
+                <p class="text-xs md:text-sm text-stone-400 leading-relaxed font-sans font-light">
+                    What began as an inspiring dream in Kerala has materialised into an elegant reality here in Jeddah. Guided by a clear desire to provide tailored perfection, Al Zalool focuses on creating the ideal wardrobe balance for the modern global woman.
+                </p>
+
+                <p class="text-xs md:text-sm text-stone-400 leading-relaxed font-sans font-light">
+                    Every design incorporates high-quality breathable local Saudi fabrics, ensuring effortless modesty without sacrificing class. Our products represent not just clothing, but the celebration of a spectacular personal style statement.
+                </p>
+
+                <div class="pt-6 border-t border-stone-900 flex items-center gap-6">
+                    <div class="w-14 h-14 rounded-full border border-gold-400/20 overflow-hidden bg-onyx flex items-center justify-center">
+                        <span class="font-serif text-gold-400 text-sm">SS</span>
+                    </div>
+                    <div>
+                        <h4 class="font-serif text-white text-base tracking-widest uppercase">Sinu Shafeeq</h4>
+                        <p class="text-[10px] text-stone-500 uppercase tracking-widest font-sans">Founder & Principal Designer</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 3: THE SIGNATURE COLLECTION -->
+    <section id="collection" class="py-24 px-6 md:px-12 relative overflow-hidden">
+        <!-- Title bar -->
+        <div class="max-w-7xl mx-auto text-center space-y-4 mb-16 reveal">
+            <span class="text-xs uppercase tracking-[0.3em] text-gold-400 font-semibold">Signature Lineup</span>
+            <h2 class="text-3xl md:text-4xl font-serif text-white tracking-wide font-medium">The Debut Collection</h2>
+            <div class="w-12 h-[1px] bg-gold-400 mx-auto"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <!-- Left Side Details & Abaya Cards -->
+            <div class="lg:col-span-7 space-y-4 order-2 lg:order-1">
+                {[
+                    { id: 1, title: 'Royal Black', tag: 'CLASSIC', desc: 'Plain matte Black Abaya finished with unique gold sleeve stich-detailing.', fabric: 'Premium Nada Fabric' },
+                    { id: 2, title: 'Dubai Open Style', tag: 'CHIC', desc: 'Versatile front-open drape with matching tailored premium belt tie.', fabric: 'Breatheable Nidha Fabric' },
+                    { id: 3, title: 'Butterfly Abayas', tag: 'MAJESTIC', desc: 'Extravagant loose visual luxury draping with precise stone work.', fabric: 'Saudi Heavy Crepe' },
+                    { id: 4, title: 'Beige Nude Range', tag: 'MINIMAL', desc: 'Modern nude palette lines for a stunning neutral wardrobe option.', fabric: 'Korean Soft Linen Fabric' },
+                    { id: 5, title: 'Bridal White Abaya', tag: 'CELEBRATION', desc: 'Exquisite white collection decorated with flawless pearl detailing.', fabric: 'Lustrous Silk Satin' }
+                ].map((item) => `
+                    <div class="p-6 bg-onyx-light border border-stone-900 rounded-2xl hover:border-gold-400/40 transition-all duration-500 cursor-pointer group flex flex-col md:flex-row md:items-center justify-between gap-4 reveal" onclick="selectCollectionItem('${item.title}')">
+                        <div class="space-y-1">
+                            <div class="flex items-center gap-3">
+                                <span class="font-mono text-xs text-gold-400 font-bold">0${item.id}</span>
+                                <h3 class="font-serif text-white text-lg group-hover:text-gold-400 transition-colors duration-300 font-semibold">${item.title}</h3>
+                                <span class="text-[9px] bg-gold-500/10 text-gold-400 font-semibold px-2 py-0.5 rounded font-sans tracking-widest uppercase">${item.tag}</span>
+                            </div>
+                            <p class="text-xs text-stone-400 leading-relaxed font-sans font-light max-w-md">${item.desc}</p>
+                        </div>
+                        <div class="flex items-center gap-3 md:text-right flex-shrink-0">
+                            <div>
+                                <span class="block text-[10px] text-stone-500 uppercase font-sans tracking-widest">Fabric Spec</span>
+                                <span class="text-xs text-gold-300 font-sans">${item.fabric}</span>
+                            </div>
+                            <div class="w-8 h-8 rounded-full bg-onyx border border-stone-800 flex items-center justify-center group-hover:bg-gold-400 group-hover:text-black transition-all duration-500">
+                                <span class="text-xs">→</span>
+                            </div>
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+
+            <!-- Right Garden Model Showcase (Sitting Outdoor) -->
+            <div class="lg:col-span-5 flex flex-col items-center order-1 lg:order-2">
+                <div class="relative w-full max-w-[390px] aspect-[3/4] group mb-6">
+                    <div class="absolute -inset-1 rounded-2xl bg-gradient-to-tr from-gold-600 to-transparent opacity-25 blur-lg"></div>
+                    <div class="relative w-full h-full overflow-hidden rounded-2xl border border-stone-800 bg-onyx shadow-2xl cursor-pointer" onclick="openLightbox('boutique_sitting.png', 'Al Zalool Sitting Garden Abaya Model')">
+                        <img src="boutique_sitting.png" 
+                             class="w-full h-full object-cover transition-transform duration-[1.2s] group-hover:scale-105" 
+                             alt="Al Zalool Sitting Garden Model"
+                             onerror="handleImageError(this, 'boutique_sitting.png', 'Garden Seating Elegance')">
+                    </div>
+                </div>
+                <p class="text-center text-[11px] text-stone-500 italic tracking-wider font-sans font-light">
+                    "Modesty is not about hiding ourselves; it's about revealing our genuine value."
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 4: INTERACTIVE LUXURY CUSTOMIZER -->
+    <section id="customizer" class="py-24 px-6 md:px-12 bg-onyx-light border-y border-stone-950 relative">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            
+            <!-- Left Configurator Panels -->
+            <div class="lg:col-span-7 space-y-8 reveal">
+                <div>
+                    <span class="text-xs uppercase tracking-[0.3em] text-gold-400 font-semibold block">Tailored Fitting Experience</span>
+                    <h2 class="text-3xl md:text-4xl font-serif text-white tracking-wide mt-2">Personalize Your Silhouette</h2>
+                    <p class="text-xs md:text-sm text-stone-400 mt-2 font-sans font-light">
+                        Select your preferred style variables below. Our custom simulator will configure your details into a ready-to-send WhatsApp order draft.
+                    </p>
+                </div>
+
+                <!-- Custom Selectors -->
+                <div class="space-y-6">
+                    <!-- Abaya Style Selection -->
+                    <div>
+                        <label class="block text-[10px] uppercase text-stone-500 tracking-[0.2em] font-sans font-semibold mb-3">1. Select Silhouette Style</label>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                            {['Royal Black', 'Dubai Open', 'Butterfly Abaya', 'Beige Nude', 'Bridal White'].map((style, idx) => `
+                                <button type="button" onclick="updateStyle('${style}')" id="btnStyle_${style}" class="py-3 px-4 rounded-xl border border-stone-800 bg-onyx text-xs text-left transition-all font-sans duration-300 hover:border-gold-400 text-stone-300 style-btn flex items-center justify-between">
+                                    <span>${style}</span>
+                                    <span class="text-[9px] text-gold-400 font-semibold">0${idx+1}</span>
+                                </button>
+                            `).join('')}
+                        </div>
+                    </div>
+
+                    <!-- Fabric Selection -->
+                    <div>
+                        <label class="block text-[10px] uppercase text-stone-500 tracking-[0.2em] font-sans font-semibold mb-3">2. Select Fabric Option</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            {[
+                                { name: 'Nada Fabric', note: 'Rich, smooth matte' },
+                                { name: 'Nidha fabric', note: 'Glossy flow, highly breathable' },
+                                { name: 'Saudi Heavy Crepe', note: 'Textured weight' }
+                            ].map((fabric) => `
+                                <button type="button" onclick="updateFabric('${fabric.name}')" id="btnFabric_${fabric.name}" class="p-3 rounded-xl border border-stone-800 bg-onyx text-left transition-all duration-300 hover:border-gold-400 fabric-btn">
+                                    <span class="block text-xs text-stone-200 font-semibold font-sans">${fabric.name}</span>
+                                    <span class="block text-[9px] text-stone-500 mt-0.5">${fabric.note}</span>
+                                </button>
+                            `).join('')}
+                        </div>
+                    </div>
+
+                    <!-- Size Configurator -->
+                    <div>
+                        <label class="block text-[10px] uppercase text-stone-500 tracking-[0.2em] font-sans font-semibold mb-3">3. Standard Size (Inches)</label>
+                        <div class="flex flex-wrap gap-2">
+                            {['52 (Small)', '54 (Medium)', '56 (Large)', '58 (X-Large)', '60 (XX-Large)'].map((size) => `
+                                <button type="button" onclick="updateSize('${size}')" id="btnSize_${size}" class="py-2.5 px-5 rounded-lg border border-stone-800 bg-onyx text-xs text-center transition-all duration-300 hover:border-gold-400 text-stone-300 size-btn font-sans">
+                                    ${size}
+                                </button>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Invoice Card / WhatsApp Order Summary Generator -->
+            <div class="lg:col-span-5 reveal">
+                <div class="bg-onyx border border-gold-900/30 p-8 rounded-3xl relative overflow-hidden shadow-2xl">
+                    <div class="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-gold-600 via-gold-400 to-gold-200"></div>
+                    
+                    <div class="flex justify-between items-start pb-6 border-b border-stone-900">
+                        <div>
+                            <h3 class="font-serif text-white text-xl tracking-wider">Fitting Summary</h3>
+                            <p class="text-[9px] text-stone-500 uppercase tracking-widest font-sans mt-0.5">Al Zalool Digital Configurator</p>
+                        </div>
+                        <span class="text-xs font-mono bg-gold-500/10 text-gold-400 px-3 py-1 rounded">PENDING INQUIRY</span>
+                    </div>
+
+                    <div class="space-y-4 py-6 border-b border-stone-900 text-xs font-sans font-light">
+                        <div class="flex justify-between">
+                            <span class="text-stone-500 uppercase">Selected Style</span>
+                            <span id="summaryStyle" class="text-white font-semibold">Select style below</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-stone-500 uppercase">Raw Fabric Code</span>
+                            <span id="summaryFabric" class="text-white font-semibold">Select fabric below</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-stone-500 uppercase">Dimension Scale</span>
+                            <span id="summarySize" class="text-white font-semibold">Select size below</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-stone-500 uppercase">Fulfillment Origin</span>
+                            <span class="text-gold-400 font-semibold uppercase">Jeddah, KSA</span>
+                        </div>
+                    </div>
+
+                    <div class="pt-6 space-y-4">
+                        <div class="flex justify-between items-baseline">
+                            <span class="text-xs uppercase text-stone-500">Estimated Sourcing Fee</span>
+                            <span class="text-2xl font-serif text-gold-400">150–250 <span class="text-xs">SAR</span></span>
+                        </div>
+                        <p class="text-[10px] text-stone-500 italic font-sans">
+                            *This represents standard production fees. Exact quotation will be finalized over WhatsApp.
+                        </p>
+
+                        <button type="button" onclick="generateWhatsAppOrder()" class="w-full bg-gold-500 text-black font-semibold text-xs tracking-wider uppercase py-4 rounded-xl transition duration-300 hover:bg-gold-400 shadow-xl flex items-center justify-center gap-2">
+                            <span>Inquire via WhatsApp</span>
+                            <span>📱</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 5: UNBOXING SIMULATOR (STEP 10) -->
+    <section id="unboxing" class="py-24 px-6 md:px-12 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            
+            <!-- Left Side Package Sandbox Scene -->
+            <div class="lg:col-span-7 flex flex-col items-center justify-center p-8 md:p-12 bg-onyx-light border border-stone-900 rounded-[32px] min-h-[440px] relative overflow-hidden">
+                
+                <!-- Spray Particle Scent Effect -->
+                <div id="scentContainer" class="absolute inset-0 pointer-events-none"></div>
+
+                <!-- Box container -->
+                <div id="luxuryBox" class="relative w-64 h-64 bg-onyx border border-stone-800 rounded-2xl transition-all duration-700 shadow-3xl flex flex-col justify-between p-6 z-10">
+                    
+                    <!-- Satin Ribbon Layer -->
+                    <div id="satinRibbon" class="absolute inset-x-0 top-1/2 -translate-y-1/2 h-9 bg-gradient-to-r from-gold-800 via-gold-500 to-gold-800 border-y border-gold-400/20 z-20 flex items-center justify-center text-[9px] text-white tracking-[0.25em] uppercase font-semibold transition-all duration-700 shadow-lg">
+                        Al Zalool Satin Ribbon
+                    </div>
+
+                    <!-- Gold Branding Cover details -->
+                    <div class="text-center">
+                        <span class="text-[9px] text-gold-400 uppercase tracking-[0.2em] block font-sans">Premium Presentation</span>
+                        <h4 class="text-lg font-serif text-white tracking-[0.3em] mt-1 font-semibold">AL ZALOOL</h4>
+                    </div>
+
+                    <!-- Open box message state details -->
+                    <div class="flex-1 flex flex-col items-center justify-center my-4">
+                        <p id="boxText" class="text-center text-[11px] text-stone-500 uppercase tracking-widest font-sans font-medium">
+                            Package Sealed
+                        </p>
+                    </div>
+
+                    <div class="text-center text-[8px] text-stone-600 tracking-widest font-sans">
+                        JEDDAH, SAUDI ARABIA
+                    </div>
+                </div>
+
+                <!-- Audio-visual Oud scent spray feedback tag -->
+                <div id="scentTag" class="absolute bottom-8 bg-gold-500 text-black text-xs font-semibold px-4 py-2 rounded-full tracking-wider uppercase opacity-0 transition-opacity duration-300 z-20 shadow-xl">
+                    🌬️ Arabian Oud Scent Sprayed!
+                </div>
+            </div>
+
+            <!-- Right Controls Panel -->
+            <div class="lg:col-span-5 space-y-6 reveal">
+                <div>
+                    <span class="text-xs uppercase tracking-[0.2em] text-gold-400 font-semibold block">Sensory Experience</span>
+                    <h3 class="text-3xl font-serif text-white mt-1">The Scented Unboxing</h3>
+                    <p class="text-xs md:text-sm text-stone-400 leading-relaxed font-sans mt-2 font-light">
+                        Sinu Shafeeq designed our packaging to captivate from the instant it lands. Complete the packing simulator tasks to preview how clients receive our shipments.
+                    </p>
+                </div>
+
+                <!-- Interactive control checklist -->
+                <div class="space-y-4 font-sans text-xs">
+                    <button type="button" onclick="untieRibbon()" class="w-full p-4 bg-onyx-light hover:bg-onyx border border-stone-800 hover:border-gold-400 rounded-xl text-left flex justify-between items-center transition-all duration-300">
+                        <span class="font-semibold text-stone-200">1. Remove Gold Silk Ribbon</span>
+                        <span id="ribbonState" class="text-gold-400 font-semibold">CLICK TO UNTIE</span>
+                    </button>
+
+                    <button type="button" onclick="openBox()" class="w-full p-4 bg-onyx-light hover:bg-onyx border border-stone-800 hover:border-gold-400 rounded-xl text-left flex justify-between items-center transition-all duration-300">
+                        <span class="font-semibold text-stone-200">2. Lift Magnetic Cover Lid</span>
+                        <span id="boxState" class="text-stone-500 font-semibold uppercase">LOCKED</span>
+                    </button>
+
+                    <button type="button" onclick="sprayOud()" class="w-full p-4 bg-onyx-light hover:bg-onyx border border-stone-800 hover:border-gold-400 rounded-xl text-left flex justify-between items-center transition-all duration-300">
+                        <span class="font-semibold text-stone-200">3. Mist Luxury Arabian Oud</span>
+                        <span class="text-gold-400 font-semibold">SPRAY MIST 💨</span>
+                    </button>
+                </div>
+
+                <!-- Step Summary List -->
+                <div class="bg-onyx-light p-5 rounded-2xl border border-stone-900 space-y-2">
+                    <span class="text-xs font-serif text-gold-400 block font-medium">Sourcing Package Rules (Step 10)</span>
+                    <ul class="text-[11px] text-stone-500 space-y-1 pl-4 list-disc font-sans font-light">
+                        <li>Bespoke Black Matte Magnetic Solid Box</li>
+                        <li>Shining Gold Foil Logo Printing</li>
+                        <li>Satin Ribbons showcasing "Al Zalool" signature design</li>
+                        <li>Signature oriental Oud spray misted within inside lining paperheets</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 6: VIP PRIVATE BOOKING FORM -->
+    <section id="booking" class="py-24 px-6 md:px-12 bg-onyx-light relative border-t border-stone-950">
+        <div class="max-w-3xl mx-auto text-center space-y-4 mb-12 reveal">
+            <span class="text-xs uppercase tracking-[0.3em] text-gold-400 font-semibold">VIP Registration</span>
+            <h2 class="text-3xl md:text-4xl font-serif text-white tracking-wide font-medium">Bespoke Fitting Inquiry</h2>
+            <p class="text-xs md:text-sm text-stone-400 max-w-lg mx-auto font-sans font-light">
+                Submit your contact parameters, and Sinu Shafeeq will organize a private styling schedule for your Abaya fitting.
+            </p>
+        </div>
+
+        <div class="max-w-2xl mx-auto bg-onyx border border-stone-900 rounded-3xl p-8 md:p-12 shadow-2xl relative">
+            <form onsubmit="handleFormSubmit(event)" class="space-y-6 font-sans text-xs">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div class="space-y-2">
+                        <label class="block uppercase tracking-wider text-stone-500 font-semibold">Your Full Name</label>
+                        <input type="text" required class="w-full bg-onyx-light border border-stone-800 focus:border-gold-400 rounded-xl p-4 text-stone-200 outline-none transition" placeholder="e.g. Fathima Shafeeq">
+                    </div>
+                    <div class="space-y-2">
+                        <label class="block uppercase tracking-wider text-stone-500 font-semibold">WhatsApp Number</label>
+                        <input type="tel" required class="w-full bg-onyx-light border border-stone-800 focus:border-gold-400 rounded-xl p-4 text-stone-200 outline-none transition" placeholder="e.g. +966 50 000 0000">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div class="space-y-2">
+                        <label class="block uppercase tracking-wider text-stone-500 font-semibold">Fulfillment Base</label>
+                        <select class="w-full bg-onyx-light border border-stone-800 focus:border-gold-400 rounded-xl p-4 text-stone-200 outline-none transition">
+                            <option value="Jeddah">Jeddah, Saudi Arabia</option>
+                            <option value="Makkah">Makkah, Saudi Arabia</option>
+                            <option value="Riyadh">Riyadh, Saudi Arabia</option>
+                            <option value="Kerala">Kerala, India</option>
+                            <option value="International">International Delivery</option>
+                        </select>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="block uppercase tracking-wider text-stone-500 font-semibold">Preferred Contact Time</label>
+                        <select class="w-full bg-onyx-light border border-stone-800 focus:border-gold-400 rounded-xl p-4 text-stone-200 outline-none transition">
+                            <option value="Morning">Morning (9:00 AM - 12:00 PM)</option>
+                            <option value="Afternoon">Afternoon (12:00 PM - 5:00 PM)</option>
+                            <option value="Evening">Evening (5:00 PM - 9:00 PM)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="space-y-2">
+                    <label class="block uppercase tracking-wider text-stone-500 font-semibold">Specific Sizing / Styling Requests</label>
+                    <textarea class="w-full bg-onyx-light border border-stone-800 focus:border-gold-400 rounded-xl p-4 text-stone-200 outline-none transition h-32" placeholder="Input any design customization requirements, sizing concerns, etc."></textarea>
+                </div>
+
+                <button type="submit" class="w-full bg-gradient-to-r from-gold-600 to-gold-400 text-black font-semibold uppercase tracking-widest py-4 rounded-xl transition duration-300 hover:opacity-90 shadow-xl">
+                    Submit Fitting Registration
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- LUXURY BRAND FOOTER -->
+    <footer class="bg-onyx border-t border-stone-950 py-16 px-6 md:px-12 text-center relative z-10">
+        <div class="max-w-7xl mx-auto space-y-6">
+            <div class="flex justify-center items-center gap-3">
+                <span class="h-[1px] w-12 bg-gold-400/30"></span>
+                <span class="font-serif tracking-[0.3em] text-gold-400 text-sm uppercase">Al Zalool Abaya</span>
+                <span class="h-[1px] w-12 bg-gold-400/30"></span>
+            </div>
+            
+            <p class="text-xs text-stone-500 max-w-md mx-auto leading-relaxed font-sans font-light">
+                An executive modular modest experience envisioned by Sinu Shafeeq. Merging high-quality local materials with classic layouts.
+            </p>
+
+            <nav class="flex justify-center gap-8 text-[10px] tracking-widest uppercase text-stone-500 font-sans">
+                <a href="#hero" class="hover:text-gold-400 transition">Home</a>
+                <a href="#journey" class="hover:text-gold-400 transition">Our Story</a>
+                <a href="#collection" class="hover:text-gold-400 transition">Collections</a>
+                <a href="#customizer" class="hover:text-gold-400 transition">Customizer</a>
+            </nav>
+
+            <p class="text-[9px] text-stone-600 font-mono tracking-widest pt-6 border-t border-stone-900/60 max-w-sm mx-auto">
+                © 2026 AL ZALOOL ABAYA BOUTIQUE. ALL RIGHTS RESERVED. JEDDAH, KSA.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Core Javascript Scripts -->
+    <script>
+        // Custom interactive state objects
+        const orderData = {
+            style: '',
+            fabric: '',
+            size: ''
+        };
+
+        let isRibbonUntied = false;
+        let isBoxOpen = false;
+
+        // Custom smooth header adjustment on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('mainHeader');
+            const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            document.getElementById('scrollProgress').style.width = scrollPercent + '%';
+
+            if (window.scrollY > 50) {
+                header.classList.add('py-2', 'bg-onyx/95', 'shadow-xl');
+                header.classList.remove('py-4');
+            } else {
+                header.classList.add('py-4');
+                header.classList.remove('py-2', 'bg-onyx/95', 'shadow-xl');
+            }
+        });
+
+        // Trigger animations on visible scroll parameters
+        const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        revealElements.forEach(el => observer.observe(el));
+
+        // Setup image placeholders gracefully if files don't exist in local GitHub directory
+        function handleImageError(element, filename, visualLabel) {
+            console.log(`Missing file fallback setup: ${filename}`);
+            element.onerror = null; // Prevent infinite loops
+            
+            // Generate a stunning styled abstract SVG card as local fallback
+            const parent = element.parentElement;
+            parent.innerHTML = `
+                <div class="w-full h-full bg-gradient-to-br from-onyx-muted via-[#1C1710] to-[#261E12] flex flex-col justify-between p-8 relative shimmer">
+                    <div class="flex justify-between items-start">
+                        <span class="font-serif text-gold-400 text-sm tracking-widest uppercase">AL ZALOOL</span>
+                        <span class="text-[10px] bg-gold-400/10 text-gold-400 px-2 py-0.5 rounded font-mono font-bold">PORTRAIT FRAME</span>
+                    </div>
+                    
+                    <div class="space-y-2 text-center my-auto relative z-10">
+                        <div class="text-4xl">🖤</div>
+                        <h4 class="font-serif text-stone-200 text-lg tracking-wide font-semibold">${visualLabel}</h4>
+                        <p class="text-[10px] text-stone-500 tracking-wider">File location: "${filename}"</p>
+                    </div>
+
+                    <div class="border-t border-stone-800 pt-4 flex justify-between items-center text-[9px] text-stone-600">
+                        <span>JEDDAH STUDIO</span>
+                        <span>LUXURY COLLECTION</span>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Lightbox controls
+        function openLightbox(imgSrc, caption) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightboxImg');
+            
+            // Attempt to load. If it fails, open fallback messaging
+            lightboxImg.src = imgSrc;
+            lightboxImg.onerror = function() {
+                showToast("Double-click to open. Upload local file '"+imgSrc+"' to make it interactive!");
+            };
+
+            lightbox.classList.remove('pointer-events-none', 'opacity-0');
+            lightbox.classList.add('opacity-100');
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.add('pointer-events-none', 'opacity-0');
+            lightbox.classList.remove('opacity-100');
+        }
+
+        // Dropdown selection synchronization for customized Abayas
+        function selectCollectionItem(title) {
+            updateStyle(title);
+            showToast(`Selected "${title}" in customizer below.`);
+            document.getElementById('customizer').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Configurator logic variables
+        function updateStyle(style) {
+            orderData.style = style;
+            document.getElementById('summaryStyle').innerText = style;
+            
+            // Highlight buttons
+            document.querySelectorAll('.style-btn').forEach(btn => {
+                btn.classList.remove('border-gold-400', 'bg-gold-500/10', 'text-white');
+            });
+            const activeBtn = document.getElementById(`btnStyle_${style}`);
+            if (activeBtn) activeBtn.classList.add('border-gold-400', 'bg-gold-500/10', 'text-white');
+        }
+
+        function updateFabric(fabric) {
+            orderData.fabric = fabric;
+            document.getElementById('summaryFabric').innerText = fabric;
+
+            document.querySelectorAll('.fabric-btn').forEach(btn => {
+                btn.classList.remove('border-gold-400', 'bg-gold-500/10');
+            });
+            const activeBtn = document.getElementById(`btnFabric_${fabric}`);
+            if (activeBtn) activeBtn.classList.add('border-gold-400', 'bg-gold-500/10');
+        }
+
+        function updateSize(size) {
+            orderData.size = size;
+            document.getElementById('summarySize').innerText = size;
+
+            document.querySelectorAll('.size-btn').forEach(btn => {
+                btn.classList.remove('border-gold-400', 'bg-gold-500/10', 'text-white');
+            });
+            const activeBtn = document.getElementById(`btnSize_${size}`);
+            if (activeBtn) activeBtn.classList.add('border-gold-400', 'bg-gold-500/10', 'text-white');
+        }
+
+        // Custom pre-configured parameters on load
+        window.addEventListener('DOMContentLoaded', () => {
+            updateStyle('Royal Black');
+            updateFabric('Nada Fabric');
+            updateSize('54 (Medium)');
+        });
+
+        // WhatsApp inquiry constructor
+        function generateWhatsAppOrder() {
+            if (!orderData.style || !orderData.fabric || !orderData.size) {
+                showToast("Please make sure all options are specified first.");
+                return;
+            }
+
+            const baseText = `*AL ZALOOL ABAYA - FITTING INQUIRY*\n\n` +
+                             `• *Style:* ${orderData.style}\n` +
+                             `• *Fabric:* ${orderData.fabric}\n` +
+                             `• *Standard Size:* ${orderData.size}\n\n` +
+                             `Hello, Sinu! Please let me know standard fulfillment rates and booking times in Jeddah.`;
+
+            const waUrl = `https://wa.me/966500000000?text=${encodeURIComponent(baseText)}`;
+            window.open(waUrl, '_blank');
+        }
+
+        // Packing simulation parameters
+        function untieRibbon() {
+            isRibbonUntied = true;
+            document.getElementById('satinRibbon').style.transform = 'translateY(-120%) scale(0.9)';
+            document.getElementById('satinRibbon').style.opacity = '0';
+            document.getElementById('ribbonState').innerText = 'UNTIED ✓';
+            document.getElementById('ribbonState').classList.add('text-emerald-400');
+            document.getElementById('boxState').innerText = 'READY TO OPEN';
+            document.getElementById('boxState').classList.remove('text-stone-500');
+            document.getElementById('boxState').classList.add('text-gold-400');
+            showToast("Ribbon untied successfully!");
+        }
+
+        function openBox() {
+            if (!isRibbonUntied) {
+                showToast("Please slide untie the Gold Ribbon cover first!");
+                return;
+            }
+            isBoxOpen = true;
+            document.getElementById('luxuryBox').classList.add('scale-105', 'border-gold-400');
+            document.getElementById('boxText').innerHTML = `
+                <span class="text-xl">✨</span><br>
+                <span class="text-white">BOX OPENED</span><br>
+                <span class="text-[10px] text-stone-400">Tissue unwrapping</span>
+            `;
+            document.getElementById('boxState').innerText = 'OPENED ✓';
+            document.getElementById('boxState').classList.add('text-emerald-400');
+            showToast("Luxury box cover lifted successfully!");
+        }
+
+        function sprayOud() {
+            // Visual mist particles
+            const scentContainer = document.getElementById('scentContainer');
+            scentContainer.innerHTML = '';
+            
+            for (let i = 0; i < 15; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'absolute w-3 h-3 rounded-full bg-gold-400/25 pointer-events-none';
+                particle.style.left = (Math.random() * 80 + 10) + '%';
+                particle.style.top = (Math.random() * 60 + 20) + '%';
+                particle.style.transform = 'scale(0.5)';
+                particle.style.transition = 'all 1.5s ease-out';
+                scentContainer.appendChild(particle);
+
+                // mist cloud visual growth
+                setTimeout(() => {
+                    particle.style.transform = 'scale(3.5)';
+                    particle.style.opacity = '0';
+                }, 50);
+            }
+
+            const tag = document.getElementById('scentTag');
+            tag.style.opacity = '1';
+            setTimeout(() => {
+                tag.style.opacity = '0';
+            }, 2500);
+
+            showToast("Spreading mist signature Arabian Oud scent!");
+        }
+
+        // Custom toast setup
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toastMessage');
+            toastMsg.innerText = message;
+            
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+                toast.classList.remove('translate-y-0', 'opacity-100');
+            }, 3500);
+        }
+
+        // VIP Request Submission Simulator
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            showToast("✨ Booking submitted! Sinu Shafeeq will verify your parameters soon.");
+            e.target.reset();
+        }
+    </script>
+</body>
+</html>
+
+```
